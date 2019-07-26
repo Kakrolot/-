@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tarena.ht.mapper.RoleMapper">
+		
+		<!-- 1.保存按钮 -->
+		<!-- 1.1先删除原来的角色信息 -->
+		<delete id="deleteModuleIdByRoleId">
+			delete from role_module_p
+			where role_id = #{roleId}
+		
+		</delete>
+		<!-- 1.2再进行现在的数据保存 -->
+		<insert id="saveRoleModule">
+			insert into role_module_p
+			values
+			<foreach collection="moduleIds" item="moduleId" separator=",">
+				(#{moduleId},#{roleId})
+			</foreach>
+		
+		</insert>
+
+
+</mapper>
